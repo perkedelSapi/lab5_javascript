@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Validasi Form JavaScript</title>
+    <script>
+        // Fungsi untuk validasi form
+        function validasiForm() {
+            var nama = document.forms["formPendaftaran"]["nama"].value;
+            var email = document.forms["formPendaftaran"]["email"].value;
+            var umur = document.forms["formPendaftaran"]["umur"].value;
+
+            // Validasi nama (tidak boleh kosong)
+            if (nama == "") {
+                alert("Nama tidak boleh kosong!");
+                return false;
+            }
+
+            // Validasi email (harus mengandung @)
+            if (email == "") {
+                alert("Email tidak boleh kosong!");
+                return false;
+            } else if (email.indexOf("@") == -1) {
+                alert("Email tidak valid! Harus mengandung '@'");
+                return false;
+            }
+
+            // Validasi umur (harus angka dan minimal 17)
+            if (umur == "") {
+                alert("Umur tidak boleh kosong!");
+                return false;
+            } else if (isNaN(umur)) {
+                alert("Umur harus berupa angka!");
+                return false;
+            } else if (umur < 17) {
+                alert("Umur minimal 17 tahun!");
+                return false;
+            }
+
+            // Jika semua valid → tampilkan pesan sukses
+            alert("Form berhasil dikirim!");
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Formulir Pendaftaran</h2>
+
+    <form name="formPendaftaran" onsubmit="return validasiForm()">
+        <label>Nama:</label><br>
+        <input type="text" name="nama"><br><br>
+
+        <label>Email:</label><br>
+        <input type="text" name="email"><br><br>
+
+        <label>Umur:</label><br>
+        <input type="text" name="umur"><br><br>
+
+        <input type="submit" value="Kirim">
+    </form>
+</body>
+
+</html>
